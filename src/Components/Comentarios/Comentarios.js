@@ -2,18 +2,15 @@ import React, { Fragment, useState } from 'react';
 import { Text, FlatList, TextInput, Image, View, TouchableOpacity } from 'react-native';
 import estilo from './estilos';
 
-const Comentarios = ({ comentarios }) => {
+const Comentarios = ({ comentarios, adicionarComentario }) => {
+
   const [estComentarios, setComentarios] = useState(comentarios)
 
-  const adicionarComentario = () => {
-    console.warn(conteudoCampoInput);
+  const comentar = () => {
     campoInput.clear();
-    const novoComentario = {
-      date: Date.now(),
-      text: conteudoCampoInput,
-      userName: "helineto10"
-    }
-
+    const novoComentario = adicionarComentario(
+      conteudoCampoInput,
+      "helineto10")
     setComentarios([...estComentarios, novoComentario]);
   }
 
@@ -37,7 +34,7 @@ const Comentarios = ({ comentarios }) => {
           placeholder={"Deixe seu comentário..."}
           style={{ flex: 1 }}
         />
-        <TouchableOpacity onPress={adicionarComentario}>
+        <TouchableOpacity onPress={comentar}>
           <Image
             source={require('../../../res/img/send.png')}
             style={estilo.imgSend}
