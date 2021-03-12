@@ -45,4 +45,15 @@ const Feed = () => {
   );
 };
 
+Feed.navigationOptions = ({ navigation }) => {
+  const opcoes = {
+    title: navigation.getParam("nome")
+  }
+  if(Platform.OS === "Android"){
+    opcoes.header = null;
+  }
+
+  return opcoes;
+}
+
 export default Feed;
